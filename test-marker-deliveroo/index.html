@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- we import arjs version without NFT but with marker + location based support -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+    <!-- Script pour l'animation en 3d + ajout de "animation-mixer" dans a-entity -->
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.min.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+
+ 
+    <!-- Script pour le bouton qui redirige sur le site (ici deliveroo) -->
+    <script>
+        window.onload = function () {
+        document
+            .querySelector(".heaven-button")
+            .addEventListener("click", function () {
+                document.location.href="https://deliveroo.fr/fr/";
+            });
+        };
+    </script>
+
+
+    <style>
+        .buttons {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 6em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        }
+
+        .heaven-button {
+        padding: 0.25em;
+        border-radius: 4px;
+        border: solid 1px black;
+        background: white;
+        color: black;
+        width: 100%;
+        height: 100%;
+        font-weight: bold;
+        }
+    </style>
+    <body style="margin : 0px; overflow: hidden;">
+        <a-scene  
+        arjsarjs
+        embedded>
+
+
+                <a-assets>
+                    <a-asset-item id="glb-asset" src="https://www.thomas-birmingham.fr/projets/test-marker-deliveroo/burgerConfetti.glb"></a-asset-item>
+                </a-assets>
+
+
+            <a-marker
+            type='pattern' 
+            url='https://www.thomas-birmingham.fr/projets/test-marker-deliveroo/marker-deliveroo.patt'
+            clickhandler
+            emitevents="true" 
+            cursor="rayOrigin: mouse"
+            >
+            <a-entity
+                position="0 0.5 0"
+                scale="0.8 0.8 0.8"
+                gltf-model="#glb-asset"
+                animation-mixer
+                >
+            </a-entity>
+
+        </a-marker>
+        <a-entity camera></a-entity>
+        </a-scene>
+        <div class="buttons">
+            <button class="heaven-button">deliveroo</button>
+        </div>
+    </body>
+</html>
+
+<!-- marche -->
+
+<!-- <!DOCTYPE html>
+<html>
+    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+     we import arjs version without NFT but with marker + location based support 
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script>
+        AFRAME.registerComponent('clickhandler', {
+            init: function() {
+                this.el.addEventListener('click', () => {
+                    document.location.href="https://heaven.paris/";
+                });
+        }});
+    </script>
+    <body style="margin : 0px; overflow: hidden;">
+        <a-scene  
+        arjs
+        embedded
+        renderer="logarithmicDepthBuffer: true;"
+        vr-mode-ui="enabled: false"
+        gesture-detector
+        id="scene">
+
+        <a-marker
+		embedded
+		arjs='sourceType: webcam; debugUIEnabled: false;' type='pattern' url='https://www.thomas-birmingham.fr/projets/test-marker-ar/marker.patt'>
+            <a-entity
+            position="0 0.5 0"
+            scale="0.3 0.3 0.3"
+            clickhandler
+            gltf-model="https://www.thomas-birmingham.fr/projets/test-marker-ar/src/heaven5.gltf"
+            ></a-entity>
+        </a-marker>
+        <a-entity camera></a-entity>
+        </a-scene>
+    </body>
+</html> -->
